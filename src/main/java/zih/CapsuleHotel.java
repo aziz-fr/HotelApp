@@ -59,23 +59,25 @@ public class CapsuleHotel {
     // check for the range of the capsule number
     // should not be 0 or greater than the length
     if (capsuleNumber < 1 || capsuleNumber > capsules.length){
-      System.out.println("ERROR");
-      System.out.printf("Capsule #%s does not exist.", capsuleNumber);
+      System.out.println("ERROR\n" +
+              "Capsule #" + capsuleNumber + " does not exist.");
       return false;
     }
 
     // convert capsule number from (1-based) into valid array index (0-based)
     int index = capsuleNumber - 1;
     if (capsules[index] != null){
-      System.out.println("ERROR");
-      System.out.printf("Capsule #%s is occupied.", capsuleNumber);
+      System.out.println("ERROR\n" +
+              "Capsule #" + capsuleNumber + " is occupied.");
+
       return false;
     }
 
     // store the guest name inside the current index of the capsule array
     capsules[index] = guestName;
-    System.out.println("SUCCESS!");
-    System.out.printf("%s is booked in capsule #%s%n", guestName, capsuleNumber);
+    System.out.println("SUCCESS!\n" +
+            guestName + " is booked in capsule #" + capsuleNumber + ".");
+//    System.out.printf("%s is booked in capsule #%s.", guestName, capsuleNumber);
     return true;
   }
 
@@ -123,8 +125,9 @@ public class CapsuleHotel {
 
     // check if the capsule number greater than 0 and less than capsules' length
     if (capsuleNumber < 1 || capsuleNumber > capsules.length){
-      System.out.println("ERROR");
-      System.out.printf("Capsule #%s does not exist.", capsuleNumber);
+      System.out.println("ERROR\n" +
+              "Capsule #" + capsuleNumber + " does not exist.");
+
       return false;
     }
 
@@ -132,8 +135,9 @@ public class CapsuleHotel {
     // display error message if capsule is unoccupied
     int index = capsuleNumber - 1;
     if (capsules[index] == null){
-      System.out.println("ERROR");
-      System.out.printf("Capsule #%s is unoccupied.", capsuleNumber);
+      System.out.println("Error :(\n" +
+              "Capsule #" + capsuleNumber + " is unoccupied.");
+
       return false;
     }
 
@@ -141,8 +145,9 @@ public class CapsuleHotel {
     // set capsule index to null to remove user
     String guestName = capsules[index];
     capsules[index] = null;
-    System.out.println("SUCCESS!");
-    System.out.printf("%s has been checked out from capsule #%s", guestName, capsuleNumber);
+    System.out.println("SUCCESS\n" +
+            guestName + " is checked out from capsule #" + capsuleNumber + ".");
+
     return true;
   }
 
@@ -171,19 +176,19 @@ public class CapsuleHotel {
     final int VIEW_RANGE = 11;
     final int HALF_RANGE = VIEW_RANGE / 2;
 
-    if (capsuleNumber < HALF_RANGE || capsules.length <= VIEW_RANGE){      // first 11
+    if (capsuleNumber <= HALF_RANGE || capsules.length <= VIEW_RANGE){      // first 11
       printGuestInRange(0, Math.min(VIEW_RANGE, capsules.length));
     } else if ((capsuleNumber + HALF_RANGE) >= capsules.length) {          // last 11
       printGuestInRange((capsules.length - VIEW_RANGE), capsules.length);
     } else {     // middle 11
-      printGuestInRange((capsuleNumber - HALF_RANGE), (capsuleNumber + HALF_RANGE - 1));
+      printGuestInRange((capsuleNumber - HALF_RANGE - 2), (capsuleNumber + HALF_RANGE - 1));
     }
 
   }
 
   // displays list of guests from start to end, 11 at a time.
   public void printGuestInRange(int start, int end){
-    String message = "Capsule: Guest\n==============\n";
+    String message = "Capsule: Guest\n";
 
     for (int i = start; i < end; i++){
       int displayIndex = i + 1;
