@@ -168,20 +168,20 @@ public class CapsuleHotel {
 
     // handle non-existent capsule number error
     if (capsuleNumber < 1 || capsuleNumber > capsules.length) {
-      System.out.println("ERROR");
-      System.out.printf("Capsule #%s does not exist.", capsuleNumber);
+      System.out.println("ERROR\n" +
+              "Capsule #" + capsuleNumber + " does not exist.");
       return;
     }
 
     final int VIEW_RANGE = 11;
-    final int HALF_RANGE = VIEW_RANGE / 2;
+    final int HALF_RANGE = (VIEW_RANGE / 2) + 1;
 
     if (capsuleNumber <= HALF_RANGE || capsules.length <= VIEW_RANGE){      // first 11
       printGuestInRange(0, Math.min(VIEW_RANGE, capsules.length));
     } else if ((capsuleNumber + HALF_RANGE) >= capsules.length) {          // last 11
       printGuestInRange((capsules.length - VIEW_RANGE), capsules.length);
     } else {     // middle 11
-      printGuestInRange((capsuleNumber - HALF_RANGE - 2), (capsuleNumber + HALF_RANGE - 1));
+      printGuestInRange((capsuleNumber - HALF_RANGE), (capsuleNumber + HALF_RANGE - 1));
     }
 
   }
